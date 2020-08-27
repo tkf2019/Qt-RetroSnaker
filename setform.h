@@ -29,6 +29,9 @@ enum formData {
   CUSTOMWALL
 };
 
+//This form is used to set the initial direction of the Snake,
+//the speed of the Snake, the initial coordinate of the Snake,
+//and basic map types.
 class SetForm : public QWidget {
   Q_OBJECT
 

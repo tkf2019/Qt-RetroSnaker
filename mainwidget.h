@@ -17,6 +17,7 @@ namespace Ui {
   class MainWidget;
 }
 
+//Connect seperated parts of the game.
 class MainWidget : public QWidget {
   Q_OBJECT
 

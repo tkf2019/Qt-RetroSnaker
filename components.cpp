@@ -29,11 +29,10 @@ void Map::setNoMap() {
 }
 
 Snake::Snake(QObject* parent)
-  : QObject(parent), dir_(RIGHT), type_(NORMAL), eatLeft(0) {}
+  : QObject(parent), dir_(RIGHT), eatLeft(0) {}
 
 void Snake::initialize(Pos const& p, const Map& m) {
   body_.clear();
-  type_ = NORMAL;
   Block head(p), body;
   if (dir_ == UP) {
     body = Block(Pos(p.first, p.second + 1));

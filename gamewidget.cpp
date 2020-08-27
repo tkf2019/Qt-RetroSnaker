@@ -8,6 +8,7 @@ GameWidget::GameWidget(QWidget* parent) :
   timer(new QTimer), score(0), status(prepare), dist(0) {
   ui->setupUi(this);
   this->setGeometry(0, 45, gameSize, gameSize);
+  this->setFixedSize(gameSize, gameSize);
 }
 
 GameWidget::~GameWidget() {
@@ -35,7 +36,6 @@ void GameWidget::initialize(QJsonObject obj) {
   this->setFocusPolicy(Qt::StrongFocus);
   snake->body_.clear();
   snake->dir_  = obj.value("dir").toInt();
-  snake->type_ = NORMAL;
   for (auto block : obj.value("snake").toArray()) {
     snake->body_.push_back(Block(Pos(block.toObject().value("x").toInt(), block.toObject().value("y").toInt())));
   }
@@ -84,9 +84,7 @@ void GameWidget::updateGame() {
     normal->initialize(*snake, *map);
     return;
   }
-  int tmp = level;
   level = score / 20;
-  speed -= level - tmp;
   moveSnake(snake);
 }
 
@@ -245,7 +243,6 @@ void GameWidget::moveSnake(Snake* s) {
     s->eatLeft--;
   } else {
     s->body_.pop_back();
-    s->type_ = NORMAL;
   }
   int max = gameSize / unit;
   switch (s->dir_) {
@@ -272,7 +269,6 @@ bool GameWidget::eatBug(Snake* s, Bug* b) {
   int headX = headPos.first, headY = headPos.second;
   int bugX = bugPos.first, bugY = bugPos.second;
   if (headX == bugX && headY == bugY) {
-    s->type_ = AFTEREAT;
     s->eatLeft = 3;
     score += 5;
     timer->start(speed);

@@ -22,6 +22,9 @@ private:
   void mousePressEvent(QMouseEvent *);
 public:
   Ui::GameWindow* ui;
+  //Seperate the Operation Part and Game Part.
+  //Set the GameWindow as a Container.
+  //Bind the slots and the signals in the Container.
   GameWidget* game;
 
   QMenuBar* menu;

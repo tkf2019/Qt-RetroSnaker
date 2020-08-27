@@ -2,7 +2,7 @@
 #define UTILS
 
 #include <ctime>
-
+//Variables Shared by All parts.
 extern int unit;
 extern int gameSize;
 extern int speed;

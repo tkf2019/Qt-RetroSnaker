@@ -5,7 +5,7 @@ GameWindow::GameWindow(QWidget* parent) :
   QMainWindow(parent),
   ui(new Ui::GameWindow), game(new GameWidget(this)) {
   ui->setupUi(this);
-  this->resize(gameSize + 200, gameSize + 45);
+  this->setFixedSize(gameSize + 200, gameSize + 45);
 
   game->status = setting;
   game->installEventFilter(this);

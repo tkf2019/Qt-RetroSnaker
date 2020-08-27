@@ -20,6 +20,9 @@ namespace Ui {
   class LoadForm;
 }
 
+//This form is used to save or load files.
+//Player don't need to operate the data file
+//but view the GUI.
 class LoadForm : public QWidget {
   Q_OBJECT
 
@@ -28,16 +31,22 @@ class LoadForm : public QWidget {
   ~LoadForm();
 
  private:
+  //Watch the click event on three GroupBoxes.
   bool eventFilter(QObject*, QEvent*);
+  //Watch click events and refresh the GUI.
   void setView();
 
  public:
   Ui::LoadForm* ui;
+  //In this load form, the number of archives is
+  //registrated to three.
   QJsonObject loadJsonArray;
 
  private:
+  //Operate the data files.
   QFile* file;
   QString chosenOrder;
+  //The data is saved in a .json file.
   QJsonObject saveJsonObject;
 
  public slots:

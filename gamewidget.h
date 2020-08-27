@@ -23,7 +23,9 @@ namespace Ui {
   class GameWidget;
 }
 
+//Important Status: Watch and Respond to the changes.
 enum gameStatus {prepare, gaming, pause, gameover, setting};
+
 class GameWidget : public QWidget {
   Q_OBJECT
 
@@ -33,13 +35,20 @@ class GameWidget : public QWidget {
 
 
  private:
+  //Snake moves by take its tail to the front of its head,
+  //then repaint in paintEvent.
   void moveSnake(Snake* s);
+  //If the head of the snake touch a Bug, the position of the Bug
+  //will be reset and the Snake will grow.
   bool eatBug(Snake* s, Bug* b);
 
  protected:
+  //Bind the paintEvent to update() and updateGame().
   void paintEvent(QPaintEvent*);
+  //Watch the Event of Key Press.
   void keyPressEvent(QKeyEvent*);
 
+  //Each slot is binded to an action.
  public slots:
   void initialize();
   void initialize(QJsonObject);
@@ -53,6 +62,7 @@ class GameWidget : public QWidget {
   void updateGame();
   void terminateGame();
 
+  //These signals will be sent when the slots above are triggered
  signals:
   void snakeEatBug();
   void gameOver();
